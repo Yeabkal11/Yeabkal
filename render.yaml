@@ -13,7 +13,7 @@ services:
     # The command to install dependencies and set up the initial database schema.
     buildCommand: "pip install -r requirements.txt && python -c 'import asyncio; from db.manager import create_db_pool, setup_database; async def main(): pool = await create_db_pool(); await setup_database(pool); await pool.close(); asyncio.run(main()); print(\"Database setup complete.\")'"
     # The command to start the web server. Gunicorn runs Uvicorn workers for FastAPI.
-    startCommand: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker api.main:app"
+    startCommand: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker -b 0.0.0.0:$PORT api.main:app"
     # Render uses this path to check if the service is running correctly.
     healthCheckPath: /
     envVars:
