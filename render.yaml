@@ -1,5 +1,4 @@
 services:
-  # A web service for the FastAPI webhook server
   - type: web
     name: yeab-game-zone-api
     env: python
