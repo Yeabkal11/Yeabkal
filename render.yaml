@@ -5,8 +5,6 @@ services:
     env: python
     plan: free
     buildCommand: "pip install -r requirements.txt"
-    # This command does exactly what the JavaScript example does:
-    # It tells the server to listen on the port provided by Render.
     startCommand: "gunicorn -w 4 -k uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT api.main:app"
     healthCheckPath: /
     envVars:
