@@ -1,0 +1,23 @@
+{
+	"name": "Yeab Game Zone Bot",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.linting.pylintEnabled": true,
+				"python.linting.enabled": true
+			},
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"ms-azuretools.vscode-docker"
+			]
+		}
+	},
+	"forwardPorts": [8000],
+	"postCreateCommand": "pip install --user -r requirements.txt",
+	"remoteUser": "vscode"
+}
