@@ -1,0 +1,16 @@
+# requirements.txt
+
+# --- Core Bot & API Frameworks ---
+python-telegram-bot[ext]
+fastapi
+uvicorn[standard]
+gunicorn
+
+# --- Database ---
+sqlalchemy[asyncio]
+asyncpg
+psycopg2-binary
+alembic
+
+# --- Utilities ---
+python-dotenv
