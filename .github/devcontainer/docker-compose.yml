@@ -1,0 +1,53 @@
+version: '3.8'
+services:
+  app:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/yeab_game_zone
+      - TELEGRAM_BOT_TOKEN=${TELEGRAM_BOT_TOKEN}
+      - CHAPA_API_KEY=${CHAPA_API_KEY}
+      - WEBHOOK_URL=http://localhost:8000
+      - ADMIN_TELEGRAM_ID=${ADMIN_TELEGRAM_ID}
+    volumes:
+      - ../..:/workspace:cached
+    command: sleep infinity
+    depends_on:
+      - db
+  db:
+    image: postgres:14-alpine
+    restart: unless-stopped
+    environment:
+      - POSTGRES_DB=yeab_game_zone
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+
+volumes:
+  postgres-data:```
+
+### `core/config.py`
+
+```python
+import os
+from pydantic_settings import BaseSettings, SettingsConfigDict
+from pydantic import Field
+
+class Settings(BaseSettings):
+    """Loads and validates environment variables."""
+    TELEGRAM_BOT_TOKEN: str
+    CHAPA_API_KEY: str
+    DATABASE_URL: str
+    WEBHOOK_URL: str # e.g., https://your-app-name.onrender.com
+    OWNER_COMMISSION_RATE: float = Field(0.10, ge=0, le=1) # 10% commission
+    MIN_DEPOSIT_AMOUNT: int = 20
+    GAME_TIMEOUT_SECONDS: int = 95 # 60s for move + 30s warning + 5s buffer
+    ADMIN_TELEGRAM_ID: int 
+
+    model_config = SettingsConfigDict(env_file='.env', env_file_encoding='utf-8', extra='ignore')
+
+settings = Settings()
