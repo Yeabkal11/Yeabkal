@@ -1,16 +1,7 @@
-# requirements.txt
-
-# --- Core Bot & API Frameworks ---
-python-telegram-bot[ext]
-fastapi
-uvicorn[standard]
-gunicorn
-
-# --- Database ---
-sqlalchemy[asyncio]
-asyncpg
-psycopg2-binary
-alembic
-
-# --- Utilities ---
-python-dotenv
+python-telegram-bot[webhooks]>=20.8
+fastapi>=0.104.0
+uvicorn>=0.24.0
+gunicorn>=21.2.0
+asyncpg>=0.28.0
+httpx>=0.25.0
+pydantic[dotenv]>=1.10.13
