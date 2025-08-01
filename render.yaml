@@ -24,7 +24,6 @@ services:
           property: url
 
 databases:
-  # A PostgreSQL database instance
   - name: yeab-game-zone-db
     plan: free
     databaseName: yeab_game_zone_db
