@@ -38,7 +38,7 @@ def main():
 
     # Here we replace "slime.run" with "uvicorn.run" and point it
     # to your FastAPI app located in "api/main.py".
-    uvicorn.run("api.main:app", host="0.0.0.0", port=port)
+    
 
 
 # This makes the script directly runnable with `python main.py`
